@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "203045197176",
+    "project_id": "patachoux-b0def",
+    "storage_bucket": "patachoux-b0def.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:203045197176:android:d181368d5d65d6b8d0248d",
+        "android_client_info": {
+          "package_name": "com.patach.patachoux"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "203045197176-k9r4rhsbjd3tjobg5did8bnu5raa1u3m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLtdJSUujvu8rpIhpzJYOwnyLgvajZWE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "203045197176-k9r4rhsbjd3tjobg5did8bnu5raa1u3m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

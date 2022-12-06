@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.patach.patachoux">
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo"
+        android:supportsRtl="true"
+        android:hardwareAccelerated="true"
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.PatachouxLivraison">
+
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        <activity
+            android:name=".Screens.SuplierSubOrderActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Screens.OrderSubListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Screens.UserOrderActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Screens.SlipActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Cart.CartActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Screens.PastryProductDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Screens.ProductDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Screens.UpdateUserProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Screens.SuplierMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Screens.ForgotPasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Screens.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Screens.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+        <receiver android:name=".Notification.MyNotificationPublisher"/>
+
+
+        <service
+            android:name=".Notification.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/logo" />
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/yellow" />
+    </application>
+
+</manifest>

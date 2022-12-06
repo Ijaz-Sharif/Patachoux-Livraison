@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Home"
+        android:id="@+id/home"
+        android:icon="@drawable/ic_baseline_home_24"/>
+    <item
+        android:title="Update Profile"
+        android:id="@+id/update_profile"
+        android:icon="@drawable/ic_baseline_person_24"/>
+    <item
+        android:title="Cart"
+        android:id="@+id/cart"
+        android:icon="@drawable/ic_baseline_add_shopping_cart_24"/>
+    <item
+        android:title="Order history"
+        android:id="@+id/order_history"
+        android:icon="@drawable/ic_baseline_add_shopping_cart_24"/>
+
+    <item
+        android:title="Contact Us"
+        android:id="@+id/contact_us"
+        android:icon="@drawable/ic_baseline_contact"/>
+    <item
+        android:title="logout"
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_baseline_logout_24"/>
+</menu>
