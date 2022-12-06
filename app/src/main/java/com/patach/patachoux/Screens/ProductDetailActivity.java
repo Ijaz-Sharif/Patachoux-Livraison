@@ -134,7 +134,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             databaseReference.child("ProductQuantity").setValue(1+"");
         }
         else {
-            databaseReference.child("ProductQuantity").setValue(quantity+"");
+            databaseReference.child("ProductQuantity").setValue(product_quantity.getText().toString());
         }
         databaseReference.child("ProductName").setValue(product_name.getText().toString().trim());
         finish();
