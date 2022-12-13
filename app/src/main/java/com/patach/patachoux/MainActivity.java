@@ -5,6 +5,7 @@ import static com.patach.patachoux.Utils.Constant.getUserId;
 import static com.patach.patachoux.Utils.Constant.getUserPic;
 import static com.patach.patachoux.Utils.Constant.getUseremail;
 import static com.patach.patachoux.Utils.Constant.getUsername;
+import static com.patach.patachoux.Utils.Constant.setSplierStatus;
 import static com.patach.patachoux.Utils.Constant.setUserLoginStatus;
 import static com.patach.patachoux.Utils.Constant.setUseremial;
 import static com.patach.patachoux.Utils.Constant.setUsername;
@@ -82,15 +83,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.logout:
-                        setUsername(MainActivity.this,"");
-                        setUserLoginStatus(MainActivity.this, false);
-                        setUseremial(MainActivity.this,"");
+                        setSplierStatus(MainActivity.this,false);
+                        setUserLoginStatus(MainActivity.this,false);
                         FirebaseDatabase.getInstance().getReference("User").child(getAdminId(MainActivity.this)).
                                 child(getUserId(MainActivity.this)).child("DeviceToken").setValue("empty");
                         startActivity(new Intent(MainActivity.this, LoginActivity.class)
                                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                        finish();
-                        /// do some code here
                         break;
                     case R.id.home:
                         setUpViewPager(viewPager);

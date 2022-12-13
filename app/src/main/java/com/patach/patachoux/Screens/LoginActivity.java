@@ -193,7 +193,6 @@ public class LoginActivity extends AppCompatActivity {
                             setUseremial(LoginActivity.this,etLoginEmail.getText().toString().trim());
                             FirebaseDatabase.getInstance().getReference("Suplier").child(dataSnapshot2.child("AdminId").getValue(String.class)).
                                     child(dataSnapshot2.child("Id").getValue(String.class)).child("DeviceToken").setValue(token);
-
                             loadingDialog.dismiss();
                             openHomeActivity1();
                             break;
