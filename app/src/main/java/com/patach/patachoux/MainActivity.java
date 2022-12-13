@@ -22,6 +22,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -82,11 +83,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.logout:
-                        setSplierStatus(MainActivity.this,false);
+                    case R.id.logout_use:
+                        drawer.closeDrawer(Gravity.LEFT);
+                       setSplierStatus(MainActivity.this,false);
                         setUserLoginStatus(MainActivity.this,false);
-                        FirebaseDatabase.getInstance().getReference("User").child(getAdminId(MainActivity.this)).
-                                child(getUserId(MainActivity.this)).child("DeviceToken").setValue("empty");
+//                        FirebaseDatabase.getInstance().getReference("User").child(getAdminId(MainActivity.this)).
+//                                child(getUserId(MainActivity.this)).child("DeviceToken").setValue("empty");
                         startActivity(new Intent(MainActivity.this, LoginActivity.class)
                                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                         break;

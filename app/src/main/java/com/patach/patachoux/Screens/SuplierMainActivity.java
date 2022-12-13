@@ -60,7 +60,7 @@ public class SuplierMainActivity extends AppCompatActivity {
 
     @Override
     public void onStart() {
-        getProductsData();
+      //  getProductsData();
         super.onStart();
     }
     public void getProductsData(){
@@ -183,8 +183,8 @@ public class SuplierMainActivity extends AppCompatActivity {
     public void logoutSplier(View view) {
         setSplierStatus(this,false);
         setUserLoginStatus(this,false);
-        FirebaseDatabase.getInstance().getReference("Suplier").child(getAdminId(this)).
-                child(getUserId(this)).child("DeviceToken").setValue("empty");
+//        FirebaseDatabase.getInstance().getReference("Suplier").child(getAdminId(this)).
+//                child(getUserId(this)).child("DeviceToken").setValue("empty");
         startActivity(new Intent(SuplierMainActivity.this,LoginActivity.class)
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
     }

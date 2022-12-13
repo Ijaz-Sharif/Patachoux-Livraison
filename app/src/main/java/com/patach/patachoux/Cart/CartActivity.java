@@ -57,7 +57,6 @@ import java.util.Locale;
 import java.util.UUID;
 
 public class CartActivity extends AppCompatActivity {
-    String[] country = { "No Repeat", "Monday", "Tuesday", "Wednesday", "Thursday","Friday","Saturday","Sunday"};
     TextView text_cart,price_text;
     RecyclerView recyclerView;
     DatabaseReference dRef;
@@ -77,219 +76,219 @@ public class CartActivity extends AppCompatActivity {
         text_cart=findViewById(R.id.text_cart);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        mondeyTime=findViewById(R.id.mondeyTime);
-        tuesdayTime=findViewById(R.id.tuesdayTime);
-        wednesdayTime=findViewById(R.id.wednesdayTime);
-        thursdayTime=findViewById(R.id.thursdayTime);
-        fridayTime=findViewById(R.id.fridayTime);
-        saturdayTime=findViewById(R.id.saturdayTime);
-        sundayTime=findViewById(R.id.sundayTime);
+//        mondeyTime=findViewById(R.id.mondeyTime);
+//        tuesdayTime=findViewById(R.id.tuesdayTime);
+//        wednesdayTime=findViewById(R.id.wednesdayTime);
+//        thursdayTime=findViewById(R.id.thursdayTime);
+//        fridayTime=findViewById(R.id.fridayTime);
+//        saturdayTime=findViewById(R.id.saturdayTime);
+//        sundayTime=findViewById(R.id.sundayTime);
+//
+//        isMondeyChecked=findViewById(R.id.isMondeyChecked);
+//        isTuesdayChecked=findViewById(R.id.isTuesdayChecked);
+//        isWednesdayChecked=findViewById(R.id.isWednesdayChecked);
+//        isThursdayChecked=findViewById(R.id.isThursdayChecked);
+//        isFridayChecked=findViewById(R.id.isFridayChecked);
+//        isSaturdayChecked=findViewById(R.id.isSaturdayChecked);
+//        isSundayChecked=findViewById(R.id.isSundayChecked);
 
-        isMondeyChecked=findViewById(R.id.isMondeyChecked);
-        isTuesdayChecked=findViewById(R.id.isTuesdayChecked);
-        isWednesdayChecked=findViewById(R.id.isWednesdayChecked);
-        isThursdayChecked=findViewById(R.id.isThursdayChecked);
-        isFridayChecked=findViewById(R.id.isFridayChecked);
-        isSaturdayChecked=findViewById(R.id.isSaturdayChecked);
-        isSundayChecked=findViewById(R.id.isSundayChecked);
 
-
-        isMondeyChecked.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(isMondeyChecked.isChecked()){
-                    Calendar mcurrentTime = Calendar.getInstance();
-                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                    int minute = mcurrentTime.get(Calendar.MINUTE);
-                    TimePickerDialog mTimePicker;
-                    mTimePicker = new TimePickerDialog(CartActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                            if(selectedMinute==0){
-                                mondeyTime.setText( selectedHour + ":" + "00");
-                            }
-                            else {
-                                mondeyTime.setText( selectedHour + ":" + selectedMinute);
-                            }
-
-                        }
-                    }, hour, minute, true);//Yes 24 hour time
-                    mTimePicker.setTitle("Select Time");
-                    mTimePicker.show();
-                }
-                else {
-                    mondeyTime.setText("");
-                }
-            }
-        });
-        isWednesdayChecked.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(isWednesdayChecked.isChecked()){
-                    Calendar mcurrentTime = Calendar.getInstance();
-                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                    int minute = mcurrentTime.get(Calendar.MINUTE);
-                    TimePickerDialog mTimePicker;
-                    mTimePicker = new TimePickerDialog(CartActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                            if(selectedMinute==0){
-                                wednesdayTime.setText( selectedHour + ":" + "00");
-                            }
-                            else {
-                                wednesdayTime.setText( selectedHour + ":" + selectedMinute);
-                            }
-
-                        }
-                    }, hour, minute, true);//Yes 24 hour time
-                    mTimePicker.setTitle("Select Time");
-                    mTimePicker.show();
-                }
-                else {
-                    wednesdayTime.setText("");
-                }
-            }
-        });
-        isTuesdayChecked.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(isTuesdayChecked.isChecked()){
-                    Calendar mcurrentTime = Calendar.getInstance();
-                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                    int minute = mcurrentTime.get(Calendar.MINUTE);
-                    TimePickerDialog mTimePicker;
-                    mTimePicker = new TimePickerDialog(CartActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                            if(selectedMinute==0){
-                                tuesdayTime.setText( selectedHour + ":" + "00");
-                            }
-                            else {
-                                tuesdayTime.setText( selectedHour + ":" + selectedMinute);
-                            }
-
-                        }
-                    }, hour, minute, true);//Yes 24 hour time
-                    mTimePicker.setTitle("Select Time");
-                    mTimePicker.show();
-                }
-                else {
-                    tuesdayTime.setText("");
-                }
-            }
-        });
-        isThursdayChecked.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(isThursdayChecked.isChecked()){
-                    Calendar mcurrentTime = Calendar.getInstance();
-                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                    int minute = mcurrentTime.get(Calendar.MINUTE);
-                    TimePickerDialog mTimePicker;
-                    mTimePicker = new TimePickerDialog(CartActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                            if(selectedMinute==0){
-                                thursdayTime.setText( selectedHour + ":" + "00");
-                            }
-                            else {
-                                thursdayTime.setText( selectedHour + ":" + selectedMinute);
-                            }
-
-                        }
-                    }, hour, minute, true);//Yes 24 hour time
-                    mTimePicker.setTitle("Select Time");
-                    mTimePicker.show();
-                }
-                else {
-                    thursdayTime.setText("");
-                }
-            }
-        });
-        isFridayChecked.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(isFridayChecked.isChecked()){
-                    Calendar mcurrentTime = Calendar.getInstance();
-                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                    int minute = mcurrentTime.get(Calendar.MINUTE);
-                    TimePickerDialog mTimePicker;
-                    mTimePicker = new TimePickerDialog(CartActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                            if(selectedMinute==0){
-                                fridayTime.setText( selectedHour + ":" + "00");
-                            }
-                            else {
-                                fridayTime.setText( selectedHour + ":" + selectedMinute);
-                            }
-
-                        }
-                    }, hour, minute, true);//Yes 24 hour time
-                    mTimePicker.setTitle("Select Time");
-                    mTimePicker.show();
-                }
-                else {
-                    fridayTime.setText("");
-                }
-            }
-        });
-        isSaturdayChecked.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(isSaturdayChecked.isChecked()){
-                    Calendar mcurrentTime = Calendar.getInstance();
-                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                    int minute = mcurrentTime.get(Calendar.MINUTE);
-                    TimePickerDialog mTimePicker;
-                    mTimePicker = new TimePickerDialog(CartActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                            if(selectedMinute==0){
-                                saturdayTime.setText( selectedHour + ":" + "00");
-                            }
-                            else {
-                                saturdayTime.setText( selectedHour + ":" + selectedMinute);
-                            }
-
-                        }
-                    }, hour, minute, true);//Yes 24 hour time
-                    mTimePicker.setTitle("Select Time");
-                    mTimePicker.show();
-                }
-                else {
-                    saturdayTime.setText("");
-                }
-            }
-        });
-        isSundayChecked.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(isSundayChecked.isChecked()){
-                    Calendar mcurrentTime = Calendar.getInstance();
-                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                    int minute = mcurrentTime.get(Calendar.MINUTE);
-                    TimePickerDialog mTimePicker;
-                    mTimePicker = new TimePickerDialog(CartActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                            if(selectedMinute==0){
-                                sundayTime.setText( selectedHour + ":" + "00");
-                            }
-                            else {
-                                sundayTime.setText( selectedHour + ":" + selectedMinute);
-                            }
-
-                        }
-                    }, hour, minute, true);//Yes 24 hour time
-                    mTimePicker.setTitle("Select Time");
-                    mTimePicker.show();
-                }
-                else {
-                    sundayTime.setText("");
-                }
-            }
-        });
+//        isMondeyChecked.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(isMondeyChecked.isChecked()){
+//                    Calendar mcurrentTime = Calendar.getInstance();
+//                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+//                    int minute = mcurrentTime.get(Calendar.MINUTE);
+//                    TimePickerDialog mTimePicker;
+//                    mTimePicker = new TimePickerDialog(CartActivity.this, new TimePickerDialog.OnTimeSetListener() {
+//                        @Override
+//                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+//                            if(selectedMinute==0){
+//                                mondeyTime.setText( selectedHour + ":" + "00");
+//                            }
+//                            else {
+//                                mondeyTime.setText( selectedHour + ":" + selectedMinute);
+//                            }
+//
+//                        }
+//                    }, hour, minute, true);//Yes 24 hour time
+//                    mTimePicker.setTitle("Select Time");
+//                    mTimePicker.show();
+//                }
+//                else {
+//                    mondeyTime.setText("");
+//                }
+//            }
+//        });
+//        isWednesdayChecked.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(isWednesdayChecked.isChecked()){
+//                    Calendar mcurrentTime = Calendar.getInstance();
+//                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+//                    int minute = mcurrentTime.get(Calendar.MINUTE);
+//                    TimePickerDialog mTimePicker;
+//                    mTimePicker = new TimePickerDialog(CartActivity.this, new TimePickerDialog.OnTimeSetListener() {
+//                        @Override
+//                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+//                            if(selectedMinute==0){
+//                                wednesdayTime.setText( selectedHour + ":" + "00");
+//                            }
+//                            else {
+//                                wednesdayTime.setText( selectedHour + ":" + selectedMinute);
+//                            }
+//
+//                        }
+//                    }, hour, minute, true);//Yes 24 hour time
+//                    mTimePicker.setTitle("Select Time");
+//                    mTimePicker.show();
+//                }
+//                else {
+//                    wednesdayTime.setText("");
+//                }
+//            }
+//        });
+//        isTuesdayChecked.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(isTuesdayChecked.isChecked()){
+//                    Calendar mcurrentTime = Calendar.getInstance();
+//                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+//                    int minute = mcurrentTime.get(Calendar.MINUTE);
+//                    TimePickerDialog mTimePicker;
+//                    mTimePicker = new TimePickerDialog(CartActivity.this, new TimePickerDialog.OnTimeSetListener() {
+//                        @Override
+//                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+//                            if(selectedMinute==0){
+//                                tuesdayTime.setText( selectedHour + ":" + "00");
+//                            }
+//                            else {
+//                                tuesdayTime.setText( selectedHour + ":" + selectedMinute);
+//                            }
+//
+//                        }
+//                    }, hour, minute, true);//Yes 24 hour time
+//                    mTimePicker.setTitle("Select Time");
+//                    mTimePicker.show();
+//                }
+//                else {
+//                    tuesdayTime.setText("");
+//                }
+//            }
+//        });
+//        isThursdayChecked.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(isThursdayChecked.isChecked()){
+//                    Calendar mcurrentTime = Calendar.getInstance();
+//                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+//                    int minute = mcurrentTime.get(Calendar.MINUTE);
+//                    TimePickerDialog mTimePicker;
+//                    mTimePicker = new TimePickerDialog(CartActivity.this, new TimePickerDialog.OnTimeSetListener() {
+//                        @Override
+//                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+//                            if(selectedMinute==0){
+//                                thursdayTime.setText( selectedHour + ":" + "00");
+//                            }
+//                            else {
+//                                thursdayTime.setText( selectedHour + ":" + selectedMinute);
+//                            }
+//
+//                        }
+//                    }, hour, minute, true);//Yes 24 hour time
+//                    mTimePicker.setTitle("Select Time");
+//                    mTimePicker.show();
+//                }
+//                else {
+//                    thursdayTime.setText("");
+//                }
+//            }
+//        });
+//        isFridayChecked.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(isFridayChecked.isChecked()){
+//                    Calendar mcurrentTime = Calendar.getInstance();
+//                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+//                    int minute = mcurrentTime.get(Calendar.MINUTE);
+//                    TimePickerDialog mTimePicker;
+//                    mTimePicker = new TimePickerDialog(CartActivity.this, new TimePickerDialog.OnTimeSetListener() {
+//                        @Override
+//                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+//                            if(selectedMinute==0){
+//                                fridayTime.setText( selectedHour + ":" + "00");
+//                            }
+//                            else {
+//                                fridayTime.setText( selectedHour + ":" + selectedMinute);
+//                            }
+//
+//                        }
+//                    }, hour, minute, true);//Yes 24 hour time
+//                    mTimePicker.setTitle("Select Time");
+//                    mTimePicker.show();
+//                }
+//                else {
+//                    fridayTime.setText("");
+//                }
+//            }
+//        });
+//        isSaturdayChecked.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(isSaturdayChecked.isChecked()){
+//                    Calendar mcurrentTime = Calendar.getInstance();
+//                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+//                    int minute = mcurrentTime.get(Calendar.MINUTE);
+//                    TimePickerDialog mTimePicker;
+//                    mTimePicker = new TimePickerDialog(CartActivity.this, new TimePickerDialog.OnTimeSetListener() {
+//                        @Override
+//                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+//                            if(selectedMinute==0){
+//                                saturdayTime.setText( selectedHour + ":" + "00");
+//                            }
+//                            else {
+//                                saturdayTime.setText( selectedHour + ":" + selectedMinute);
+//                            }
+//
+//                        }
+//                    }, hour, minute, true);//Yes 24 hour time
+//                    mTimePicker.setTitle("Select Time");
+//                    mTimePicker.show();
+//                }
+//                else {
+//                    saturdayTime.setText("");
+//                }
+//            }
+//        });
+//        isSundayChecked.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(isSundayChecked.isChecked()){
+//                    Calendar mcurrentTime = Calendar.getInstance();
+//                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+//                    int minute = mcurrentTime.get(Calendar.MINUTE);
+//                    TimePickerDialog mTimePicker;
+//                    mTimePicker = new TimePickerDialog(CartActivity.this, new TimePickerDialog.OnTimeSetListener() {
+//                        @Override
+//                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+//                            if(selectedMinute==0){
+//                                sundayTime.setText( selectedHour + ":" + "00");
+//                            }
+//                            else {
+//                                sundayTime.setText( selectedHour + ":" + selectedMinute);
+//                            }
+//
+//                        }
+//                    }, hour, minute, true);//Yes 24 hour time
+//                    mTimePicker.setTitle("Select Time");
+//                    mTimePicker.show();
+//                }
+//                else {
+//                    sundayTime.setText("");
+//                }
+//            }
+//        });
 
 
 
@@ -313,10 +312,6 @@ public class CartActivity extends AppCompatActivity {
 
         /////loading dialog
         loadingDialog=new Dialog(this);
-      //  repeatOrderSpinner=findViewById(R.id.spinner);
-
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,country);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         loadingDialog.setContentView(R.layout.loading_progress_dialog);
         loadingDialog.setCancelable(false);
         loadingDialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.slider_background));
@@ -512,7 +507,7 @@ public class CartActivity extends AppCompatActivity {
                         dialog.dismiss();
 
 
-                        saveData();
+                       // saveData();
 
 
                     }

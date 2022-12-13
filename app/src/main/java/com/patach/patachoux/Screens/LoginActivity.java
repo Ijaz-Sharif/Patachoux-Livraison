@@ -41,6 +41,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.patach.patachoux.CallBacks.CallListner;
 import com.patach.patachoux.MainActivity;
 import com.patach.patachoux.R;
 
@@ -105,8 +106,24 @@ public class LoginActivity extends AppCompatActivity {
                     loadingDialog.dismiss();
                     Toast.makeText(LoginActivity.this, "wrong mail or password" + task.getException(), Toast.LENGTH_LONG).show();
                 } else if (task.isSuccessful()) {
-                    firebaseAuth.getCurrentUser();
-                    getData();
+                    getData(new CallListner() {
+                        @Override
+                        public void callback(boolean status) {
+                            if(status){
+                                 openHomeActivity();
+                            }
+                            else {
+                          getData1(new CallListner() {
+                              @Override
+                              public void callback(boolean status) {
+                                  if(status){
+                                      openHomeActivity1();
+                                  }
+                              }
+                          });
+                            }
+                        }
+                    });
 
                 }
             }
@@ -118,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
-    private void getData(){
+    private void getData(final CallListner callListner){
         final String user_m=etLoginEmail.getText().toString().trim();
         String id = firebaseAuth.getCurrentUser().getUid();
         myRef=  FirebaseDatabase.getInstance().getReference().child("User");
@@ -146,24 +163,20 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-
                             FirebaseDatabase.getInstance().getReference("User").child(dataSnapshot2.child("AdminId").getValue(String.class)).
                                     child(dataSnapshot2.child("UserId").getValue(String.class)).child("DeviceToken").setValue(token);
                             loadingDialog.dismiss();
-                            openHomeActivity();
-                            break;
+                           callListner.callback(true);
+                          // break;
                         }
                     }
-
-
-
                 }
-               getData1();
+                callListner.callback(false);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                   callListner.callback(false);
             }
         });
     }
@@ -175,7 +188,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void getData1(){
+    private void getData1(final CallListner callListner){
         final String user_m=etLoginEmail.getText().toString().trim();
         myRef=  FirebaseDatabase.getInstance().getReference().child("Suplier");
         myRef.addValueEventListener(new ValueEventListener() {
@@ -194,18 +207,18 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseDatabase.getInstance().getReference("Suplier").child(dataSnapshot2.child("AdminId").getValue(String.class)).
                                     child(dataSnapshot2.child("Id").getValue(String.class)).child("DeviceToken").setValue(token);
                             loadingDialog.dismiss();
-                            openHomeActivity1();
-                            break;
+                            callListner.callback(true);
                         }
                     }
 
                 }
                 loadingDialog.dismiss();
+                callListner.callback(false);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                callListner.callback(false);
             }
         });
     }
