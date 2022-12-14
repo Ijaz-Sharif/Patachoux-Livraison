@@ -53,36 +53,22 @@ public class SuplierSubOrderActivity extends AppCompatActivity {
     ArrayList<Cart> orderList =new ArrayList<Cart>();
     DatabaseReference databaseReference;
     Button btn_order_status;
-    TextView user_name,user_address,user_number,repeat_order;
+    TextView user_name,user_address,user_number,time,date;
     int index=0;
     String dial;
-    TextView mondeyTime,tuesdayTime,wednesdayTime,thursdayTime,fridayTime,saturdayTime,sundayTime;
-    CheckBox isMondeyChecked,isTuesdayChecked,isWednesdayChecked,isThursdayChecked,isFridayChecked,isSaturdayChecked,isSundayChecked;
+
     ArrayList<RepeatOrder> repeatOrderArrayList=new ArrayList<RepeatOrder>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suplier_sub_order);
-        mondeyTime=findViewById(R.id.mondeyTime);
-        tuesdayTime=findViewById(R.id.tuesdayTime);
-        wednesdayTime=findViewById(R.id.wednesdayTime);
-        thursdayTime=findViewById(R.id.thursdayTime);
-        fridayTime=findViewById(R.id.fridayTime);
-        saturdayTime=findViewById(R.id.saturdayTime);
-        sundayTime=findViewById(R.id.sundayTime);
 
-        isMondeyChecked=findViewById(R.id.isMondeyChecked);
-        isTuesdayChecked=findViewById(R.id.isTuesdayChecked);
-        isWednesdayChecked=findViewById(R.id.isWednesdayChecked);
-        isThursdayChecked=findViewById(R.id.isThursdayChecked);
-        isFridayChecked=findViewById(R.id.isFridayChecked);
-        isSaturdayChecked=findViewById(R.id.isSaturdayChecked);
-        isSundayChecked=findViewById(R.id.isSundayChecked);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         user_number=findViewById(R.id.user_number);
         user_address=findViewById(R.id.user_address);
         user_name=findViewById(R.id.user_name);
-        repeat_order=findViewById(R.id.repeat_order);
+        time=findViewById(R.id.time);
+        date=findViewById(R.id.date);
         /////loading dialog
         loadingDialog=new Dialog(this);
         btn_order_status=findViewById(R.id.btn_order_status);
@@ -126,13 +112,9 @@ public class SuplierSubOrderActivity extends AppCompatActivity {
         user_address.setText("Address : "+suplierOrderList.get(index).getUserAddress());
         user_number.setText("Number : "+suplierOrderList.get(index).getUserNumber());
         user_name.setText("Name : "+suplierOrderList.get(index).getUserName());
+        date.setText("Delivery Date : "+suplierOrderList.get(index).getDeliveryDate());
+        time.setText("Delivery Time : "+suplierOrderList.get(index).getDeliveryTime());
         dial="tel:" +suplierOrderList.get(index).getUserNumber();
-//        if(suplierOrderList.get(index).getRepeatOrder().equals("No Repeat")){
-//          repeat_order.setVisibility(View.GONE);
-//        }
-//        else {
-//           repeat_order.setText("Repeat on every  "+suplierOrderList.get(index).getRepeatOrder());
-//        }
         if(suplierOrderList.get(index).getStatus().equals("InProgress")){
             btn_order_status.setText("Complete Order");
         }
@@ -141,72 +123,10 @@ public class SuplierSubOrderActivity extends AppCompatActivity {
         }
 
         getProductsData();
-        loadDays();
         super.onStart();
     }
-    public void loadDays(){
-        DatabaseReference   databaseReference =  FirebaseDatabase.getInstance().getReference().child("SubAdmin")
-                .child(getAdminId(this)).child("Order")
-                .child(suplierOrderList.get(index).getOrderId());
-
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot postSnapshot1 : snapshot.child("RepeatOrder").getChildren()) {
-                    repeatOrderArrayList.add(new RepeatOrder(postSnapshot1.child("day").getValue(String.class),postSnapshot1.child("status").getValue(boolean.class),postSnapshot1.child("time").getValue(String.class)));
-                }
-                setTime();
-//                final Handler handler = new Handler();
-//                handler.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//
-//
-//                    }
-//                }, 5000);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("error",error.toString());
-                Toast.makeText(SuplierSubOrderActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
-    }
-    public void setTime(){
-        if(repeatOrderArrayList.get(0).isStatus()){
-            isMondeyChecked.setChecked(true);
-            mondeyTime.setText(repeatOrderArrayList.get(0).getTime());
-        }
-        if(repeatOrderArrayList.get(1).isStatus()){
-            isTuesdayChecked.setChecked(true);
-            tuesdayTime.setText(repeatOrderArrayList.get(1).getTime());
-        }
-        if(repeatOrderArrayList.get(2).isStatus()){
-            isWednesdayChecked.setChecked(true);
-            wednesdayTime.setText(repeatOrderArrayList.get(2).getTime());
-        }
-        if(repeatOrderArrayList.get(3).isStatus()){
-            isThursdayChecked.setChecked(true);
-            thursdayTime.setText(repeatOrderArrayList.get(3).getTime());
-        }
-        if(repeatOrderArrayList.get(4).isStatus()){
-            isFridayChecked.setChecked(true);
-            fridayTime.setText(repeatOrderArrayList.get(4).getTime());
-        }
-        if(repeatOrderArrayList.get(5).isStatus()){
-            isSaturdayChecked.setChecked(true);
-            saturdayTime.setText(repeatOrderArrayList.get(5).getTime());
-        }
-        if(repeatOrderArrayList.get(6).isStatus()){
-            isSundayChecked.setChecked(true);
-            sundayTime.setText(repeatOrderArrayList.get(6).getTime());
-        }
-    }
     public void getProductsData(){
         databaseReference =  FirebaseDatabase.getInstance().getReference().child("SubAdmin")
                 .child(getAdminId(this)).child("Order")
@@ -263,13 +183,7 @@ public class SuplierSubOrderActivity extends AppCompatActivity {
 
                     if(code.equals("not available")){
 
-                        if(repeatOrderArrayList.get(0).isStatus()||repeatOrderArrayList.get(1).isStatus()||repeatOrderArrayList.get(2).isStatus()||repeatOrderArrayList.get(3).isStatus()
-                                ||repeatOrderArrayList.get(4).isStatus()||repeatOrderArrayList.get(5).isStatus()||repeatOrderArrayList.get(6).isStatus()){
-                            completeOrder1();
-                        }
-                        else {
-                            completeOrder();
-                        }
+                        completeOrder();
 
                     }
                     else {
@@ -354,13 +268,7 @@ public class SuplierSubOrderActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 if(input.getText().toString().equals(code)){
-                    if(repeatOrderArrayList.get(0).isStatus()||repeatOrderArrayList.get(1).isStatus()||repeatOrderArrayList.get(2).isStatus()||repeatOrderArrayList.get(3).isStatus()
-                            ||repeatOrderArrayList.get(4).isStatus()||repeatOrderArrayList.get(5).isStatus()||repeatOrderArrayList.get(6).isStatus()){
-                        completeOrder1();
-                    }
-                    else {
-                        completeOrder();
-                    }
+                    completeOrder();
 
 
                 }
@@ -382,30 +290,7 @@ public class SuplierSubOrderActivity extends AppCompatActivity {
         boite.show();
     }
 
-    public void completeOrder1(){
-        NotificationService.getInstance().getDeviceToken(SuplierSubOrderActivity.this,suplierOrderList.get(index).getUserId() , new CallListner() {
-            @Override
-            public void callback(boolean status) {
 
-                if(status){
-                    NotificationService.getInstance().completeOrder1(SuplierSubOrderActivity.this, new CallListner() {
-                        @Override
-                        public void callback(boolean status) {
-                            databaseReference.child("Status").setValue("InProgress");
-                            databaseReference.child("SuplierName").setValue(getUsername(SuplierSubOrderActivity.this));
-
-                            Toast.makeText(SuplierSubOrderActivity.this,"order completed",Toast.LENGTH_LONG).show();
-                            loadingDialog.dismiss();
-                            startActivity(new Intent(SuplierSubOrderActivity.this,SuplierMainActivity.class)
-                                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                            finish();
-                        }
-                    });
-                }
-
-            }
-        });
-    }
 
     public void completeOrder(){
         NotificationService.getInstance().getDeviceToken(SuplierSubOrderActivity.this,suplierOrderList.get(index).getUserId() , new CallListner() {

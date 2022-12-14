@@ -1,7 +1,7 @@
 package com.patach.patachoux.Model;
 
 public class Order {
-    String orderId,date,status,suplierName,userName,userAddress,userNumber,userId;
+    String orderId,date,status,suplierName,userName,userAddress,userNumber,userId,deliveryTime,deliveryDate;
 
     public Order(String orderId, String date,String userid) {
 
@@ -9,7 +9,7 @@ public class Order {
         this.date = date;
         this.userId=userid;
     }
-    public Order(String orderId, String date,String status,String suplierName,String userName,String userAddress,String userNumber,String userId) {
+    public Order(String orderId, String date,String status,String suplierName,String userName,String userAddress,String userNumber,String userId,String deliveryTime,String deliveryDate) {
 
         this.orderId = orderId;
         this.date = date;
@@ -19,9 +19,17 @@ public class Order {
         this.userNumber=userNumber;
         this.userName=userName;
         this.userId=userId;
+        this.deliveryDate=deliveryDate;
+        this.deliveryTime=deliveryTime;
     }
 
+    public String getDeliveryDate() {
+        return deliveryDate;
+    }
 
+    public String getDeliveryTime() {
+        return deliveryTime;
+    }
 
     public String getUserId() {
         return userId;

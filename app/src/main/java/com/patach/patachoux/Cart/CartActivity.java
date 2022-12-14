@@ -232,53 +232,7 @@ public class CartActivity extends AppCompatActivity {
         }
 
     }
-//    public ArrayList<RepeatOrder> addOrderRepeatDays(){
-//        ArrayList<RepeatOrder> repeatOrderArrayList =new ArrayList<RepeatOrder>();
-//        if(isMondeyChecked.isChecked()){
-//             repeatOrderArrayList.add(new RepeatOrder("Monday",true,mondeyTime.getText().toString()));
-//        }
-//        else {
-//            repeatOrderArrayList.add(new RepeatOrder("Monday",false,"empty"));
-//        }
-//        if(isTuesdayChecked.isChecked()){
-//            repeatOrderArrayList.add(new RepeatOrder("Tuesday",true,tuesdayTime.getText().toString()));
-//        }
-//        else {
-//            repeatOrderArrayList.add(new RepeatOrder("Tuesday",false,"empty"));
-//        }
-//        if(isWednesdayChecked.isChecked()){
-//            repeatOrderArrayList.add(new RepeatOrder("Wednesday",true,wednesdayTime.getText().toString()));
-//        }
-//        else {
-//            repeatOrderArrayList.add(new RepeatOrder("Wednesday",false,"empty"));
-//        }
-//        if(isThursdayChecked.isChecked()){
-//            repeatOrderArrayList.add(new RepeatOrder("Thursday",true,thursdayTime.getText().toString()));
-//        }
-//        else {
-//            repeatOrderArrayList.add(new RepeatOrder("Thursday",false,"empty"));
-//        }
-//        if(isFridayChecked.isChecked()){
-//            repeatOrderArrayList.add(new RepeatOrder("Friday",true,fridayTime.getText().toString()));
-//        }
-//        else {
-//            repeatOrderArrayList.add(new RepeatOrder("Friday",false,"empty"));
-//        }
-//        if(isSaturdayChecked.isChecked()){
-//            repeatOrderArrayList.add(new RepeatOrder("Saturday",true,saturdayTime.getText().toString()));
-//        }
-//        else {
-//            repeatOrderArrayList.add(new RepeatOrder("Saturday",false,"empty"));
-//        }
-//        if(isSundayChecked.isChecked()){
-//            repeatOrderArrayList.add(new RepeatOrder("Sunday",true,sundayTime.getText().toString()));
-//        }
-//        else {
-//            repeatOrderArrayList.add(new RepeatOrder("Sunday",false,"empty"));
-//        }
-//
-//        return repeatOrderArrayList;
-//    }
+
     public void saveOrderRecordUSerSide(String id){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User")
                 .child(getAdminId(this))

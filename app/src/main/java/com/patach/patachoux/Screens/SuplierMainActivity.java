@@ -60,7 +60,7 @@ public class SuplierMainActivity extends AppCompatActivity {
 
     @Override
     public void onStart() {
-      //  getProductsData();
+        getProductsData();
         super.onStart();
     }
     public void getProductsData(){
@@ -79,7 +79,9 @@ public class SuplierMainActivity extends AppCompatActivity {
                             postSnapshot.child("SuplierName").getValue(String.class)
                             , postSnapshot.child("Name").getValue(String.class), postSnapshot.child("UserAddress").getValue(String.class)
                             , postSnapshot.child("UserNumber").getValue(String.class)
-                    ,postSnapshot.child("UserId").getValue(String.class)));
+                    ,postSnapshot.child("UserId").getValue(String.class)
+                            ,postSnapshot.child("DeliveryOrderTime").getValue(String.class)
+                            ,postSnapshot.child("DeliveryOrderDate").getValue(String.class)));
                 }
                 arrayAdapter=new ArrayAdapter();
                 recyclerView.setAdapter(arrayAdapter);
