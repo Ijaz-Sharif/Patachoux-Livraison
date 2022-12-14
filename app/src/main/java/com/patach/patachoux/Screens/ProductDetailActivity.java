@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.patach.patachoux.MainActivity;
 import com.patach.patachoux.R;
 import com.squareup.picasso.Picasso;
 
@@ -137,7 +139,9 @@ public class ProductDetailActivity extends AppCompatActivity {
             databaseReference.child("ProductQuantity").setValue(product_quantity.getText().toString());
         }
         databaseReference.child("ProductName").setValue(product_name.getText().toString().trim());
-        finish();
+        Toast.makeText(ProductDetailActivity.this,"product added in cart list",Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(ProductDetailActivity.this, MainActivity.class)
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
     }
 
     public void finish(View view) {

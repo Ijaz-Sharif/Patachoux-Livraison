@@ -88,8 +88,6 @@ public class BreadFragment extends Fragment {
     }
     public void getProductsData(){
         productArrayList.clear();
-
-
         dRef=  FirebaseDatabase.getInstance().getReference("User").child(getAdminId(getContext())).child(getUserId(getContext())).child("Products").child("Bread");
         dRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
