@@ -134,7 +134,7 @@ public class CartActivity extends AppCompatActivity {
                         if(selectedMinute==0){
                             setTime.setText( selectedHour + ":" + "00");
                         }
-                        else if(selectedMinute>=1||selectedMinute<=9){
+                        else if(selectedMinute>=1 && selectedMinute<=9){
                             setTime.setText( selectedHour + ":0" + selectedMinute);
                         }
                         else {
