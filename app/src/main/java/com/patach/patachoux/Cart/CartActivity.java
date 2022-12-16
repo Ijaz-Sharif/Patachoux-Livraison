@@ -71,8 +71,6 @@ public class CartActivity extends AppCompatActivity {
     EditText setDate,setTime;
     final Calendar myCalendar= Calendar.getInstance();
     DatePickerDialog datePicker;
-    TextView mondeyTime,tuesdayTime,wednesdayTime,thursdayTime,fridayTime,saturdayTime,sundayTime;
-    CheckBox isMondeyChecked,isTuesdayChecked,isWednesdayChecked,isThursdayChecked,isFridayChecked,isSaturdayChecked,isSundayChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,22 +101,6 @@ public class CartActivity extends AppCompatActivity {
                 datePicker.show();
             }
         });
-
-//        mondeyTime=findViewById(R.id.mondeyTime);
-//        tuesdayTime=findViewById(R.id.tuesdayTime);
-//        wednesdayTime=findViewById(R.id.wednesdayTime);
-//        thursdayTime=findViewById(R.id.thursdayTime);
-//        fridayTime=findViewById(R.id.fridayTime);
-//        saturdayTime=findViewById(R.id.saturdayTime);
-//        sundayTime=findViewById(R.id.sundayTime);
-//
-//        isMondeyChecked=findViewById(R.id.isMondeyChecked);
-//        isTuesdayChecked=findViewById(R.id.isTuesdayChecked);
-//        isWednesdayChecked=findViewById(R.id.isWednesdayChecked);
-//        isThursdayChecked=findViewById(R.id.isThursdayChecked);
-//        isFridayChecked=findViewById(R.id.isFridayChecked);
-//        isSaturdayChecked=findViewById(R.id.isSaturdayChecked);
-//        isSundayChecked=findViewById(R.id.isSundayChecked);
 
 
         setTime.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +146,7 @@ public class CartActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         NotificationService.getInstance().deviceTokenArrayList.clear();
-        NotificationService.getInstance().getSuplierDeviceToken(this);
+      //  NotificationService.getInstance().getSuplierDeviceToken(this);
         NotificationService.getInstance().getAdminDeviceToken(this);
         getProductsData();
         super.onStart();
@@ -221,10 +203,6 @@ public class CartActivity extends AppCompatActivity {
             loadingDialog.dismiss();
             FirebaseDatabase.getInstance().getReference().child("User").child(getAdminId(CartActivity.this)).child(getUserId(CartActivity.this)).child("Cart").removeValue();
             startActivity(new Intent(CartActivity.this, SlipActivity.class));
-
-
-
-
 
         } catch (Exception e) {
             loadingDialog.dismiss();
