@@ -146,7 +146,7 @@ public class CartActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         NotificationService.getInstance().deviceTokenArrayList.clear();
-      //  NotificationService.getInstance().getSuplierDeviceToken(this);
+        NotificationService.getInstance().getSuplierDeviceToken(this);
         NotificationService.getInstance().getAdminDeviceToken(this);
         getProductsData();
         super.onStart();
