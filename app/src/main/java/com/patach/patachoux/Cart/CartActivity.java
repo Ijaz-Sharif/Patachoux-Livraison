@@ -71,6 +71,7 @@ public class CartActivity extends AppCompatActivity {
     EditText setDate,setTime;
     final Calendar myCalendar= Calendar.getInstance();
     DatePickerDialog datePicker;
+    DatabaseReference myDataBaseReferance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,7 @@ public class CartActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setDate=findViewById(R.id.setDate);
         setTime=findViewById(R.id.setTime);
+        myDataBaseReferance = FirebaseDatabase.getInstance().getReference().child("User").child(getAdminId(CartActivity.this)).child(getUserId(CartActivity.this)).child("Cart");
         DatePickerDialog.OnDateSetListener date =new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -199,9 +201,11 @@ public class CartActivity extends AppCompatActivity {
         try {
             String id =createOrderId();
             Toast.makeText(CartActivity.this, "sucessfull", Toast.LENGTH_SHORT).show();
-            saveOrderRecordUSerSide(id);
-            loadingDialog.dismiss();
-            FirebaseDatabase.getInstance().getReference().child("User").child(getAdminId(CartActivity.this)).child(getUserId(CartActivity.this)).child("Cart").removeValue();
+            saveOrderRecord(id);
+           // saveOrderRecordUSerSide(id);
+           loadingDialog.dismiss();
+
+              //   finish();
             startActivity(new Intent(CartActivity.this, SlipActivity.class));
 
         } catch (Exception e) {
@@ -212,30 +216,30 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public void saveOrderRecordUSerSide(String id){
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User")
-                .child(getAdminId(this))
-                .child(getUserId(this)).child("Order")
-                .child(id.substring(0,8));
-        databaseReference.child("OrderId").setValue(id.substring(0,8));
-        databaseReference.child("Date").setValue(getCurrentDate());
-
-
-        databaseReference.child("DeliveryOrderDate").setValue(setDate.getText().toString());
-        databaseReference.child("DeliveryOrderTime").setValue(setTime.getText().toString());
-
-        databaseReference.child("UserId").setValue(getUserId(this));
-        for(int i=0;i<cartArrayList.size();i++){
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("User")
-                    .child(getAdminId(this))
-                    .child(getUserId(this)).child("Order")
-                    .child(id.substring(0,8)).child("OrderItems").child(cartArrayList.get(i).getProdcutId());
-            databaseReference.child("ProductName").setValue(cartArrayList.get(i).getProductName());
-            databaseReference.child("ProductPrice").setValue(cartArrayList.get(i).getProductPrice());
-            databaseReference.child("ProductImage").setValue(cartArrayList.get(i).getProductImage());
-            databaseReference.child("ProductQuantity").setValue(cartArrayList.get(i).getProductQuantity());
-            databaseReference.child("ProductId").setValue(cartArrayList.get(i).getProdcutId());
-        }
-        saveOrderRecord(id);
+//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User")
+//                .child(getAdminId(this))
+//                .child(getUserId(this)).child("Order")
+//                .child(id.substring(0,8));
+//        databaseReference.child("OrderId").setValue(id.substring(0,8));
+//        databaseReference.child("Date").setValue(getCurrentDate());
+//
+//
+//        databaseReference.child("DeliveryOrderDate").setValue(setDate.getText().toString());
+//        databaseReference.child("DeliveryOrderTime").setValue(setTime.getText().toString());
+//
+//        databaseReference.child("UserId").setValue(getUserId(this));
+//        for(int i=0;i<cartArrayList.size();i++){
+//            databaseReference = FirebaseDatabase.getInstance().getReference().child("User")
+//                    .child(getAdminId(this))
+//                    .child(getUserId(this)).child("Order")
+//                    .child(id.substring(0,8)).child("OrderItems").child(cartArrayList.get(i).getProdcutId());
+//            databaseReference.child("ProductName").setValue(cartArrayList.get(i).getProductName());
+//            databaseReference.child("ProductPrice").setValue(cartArrayList.get(i).getProductPrice());
+//            databaseReference.child("ProductImage").setValue(cartArrayList.get(i).getProductImage());
+//            databaseReference.child("ProductQuantity").setValue(cartArrayList.get(i).getProductQuantity());
+//            databaseReference.child("ProductId").setValue(cartArrayList.get(i).getProdcutId());
+//        }
+//        saveOrderRecord(id);
 
 
     }
@@ -265,7 +269,6 @@ public class CartActivity extends AppCompatActivity {
             databaseReference1.child("ProductQuantity").setValue(cartArrayList.get(i).getProductQuantity());
             databaseReference1.child("ProductId").setValue(cartArrayList.get(i).getProdcutId());
         }
-       // databaseReference1.child("OrderItems").setValue(cartArrayList);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
@@ -292,7 +295,7 @@ public class CartActivity extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
-
+                       myDataBaseReferance.removeValue();
                         saveData();
 
                     }
