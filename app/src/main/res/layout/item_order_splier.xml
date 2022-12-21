@@ -63,28 +63,28 @@
                 android:layout_height="30dp"
                 android:layout_weight="1"/>
         </LinearLayout>
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:weightSum="2"-->
-<!--            android:layout_margin="5dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent">-->
-<!--            <TextView-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="30dp"-->
-<!--                android:gravity="center"-->
-<!--                android:text="Order Repeat"-->
-<!--                android:layout_weight="1"/>-->
-<!--            <TextView-->
-<!--                android:layout_width="0dp"-->
-<!--                android:gravity="center"-->
-<!--                android:text=""-->
-<!--                android:id="@+id/order_repeat"-->
-<!--                android:layout_height="30dp"-->
-<!--                android:layout_weight="1"/>-->
-<!--        </LinearLayout>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_margin="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="Order Accepted by"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:text=""
+                android:id="@+id/order_accepter"
+                android:layout_height="30dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
     </LinearLayout>
 
 

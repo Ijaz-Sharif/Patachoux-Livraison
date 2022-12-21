@@ -110,6 +110,7 @@ public class SuplierMainActivity extends AppCompatActivity {
 
             holder.order_id.setText(suplierOrderList.get(position).getOrderId());
             holder.order_date.setText(suplierOrderList.get(position).getDate());
+            holder.order_accepter.setText(suplierOrderList.get(position).getSuplierName());
             if(suplierOrderList.get(position).getStatus().equals("Start")){
                 holder.image_status.setImageDrawable(getResources().getDrawable(R.drawable.green_image));
             }
@@ -144,7 +145,7 @@ public class SuplierMainActivity extends AppCompatActivity {
         }
 
         public class ImageViewHoler extends RecyclerView.ViewHolder {
-            TextView order_id,order_date;
+            TextView order_id,order_date,order_accepter;
             ImageView image_status;
             CardView cardView;
             public ImageViewHoler(@NonNull View itemView) {
@@ -152,7 +153,7 @@ public class SuplierMainActivity extends AppCompatActivity {
                 image_status=itemView.findViewById(R.id.image_status);
                 order_id=itemView.findViewById(R.id.order_id);
                 order_date=itemView.findViewById(R.id.order_date);
-                cardView=itemView.findViewById(R.id.cardView);
+                cardView=itemView.findViewById(R.id.cardView); order_accepter=itemView.findViewById(R.id.order_accepter);
             }
         }
     }

@@ -195,7 +195,7 @@ String url ="https://fcm.googleapis.com/fcm/send";
                     deviceToken =dataSnapshot.child("DeviceToken").getValue(String.class);
                 }
 
-                callListner.callback(true);
+                    callListner.callback(true);
 
 
 
