@@ -58,15 +58,19 @@ public class UserOrderActivity extends AppCompatActivity {
     }
     public void getProductsData(){
 
-        dRef=   FirebaseDatabase.getInstance().getReference().child("User").child(getAdminId(this)).child(getUserId(this)).child("Order");
+
+        dRef=    FirebaseDatabase.getInstance().getReference().child("SubAdmin")
+                .child(getAdminId(this)).child("Order");
         loadingDialog.show();
         orderIdList.clear();
         dRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    if(postSnapshot.child("UserId").getValue(String.class).equals(getUserId(UserOrderActivity.this)))
                     orderIdList.add(new Order(postSnapshot.child("OrderId").getValue(String.class),postSnapshot.child("Date").getValue(String.class)
-                    ,postSnapshot.child("UserId").getValue(String.class)));
+                            ,postSnapshot.child("UserId").getValue(String.class)));
                 }
                 arrayAdapter=new ArrayAdapter();
                 recyclerView.setAdapter(arrayAdapter);

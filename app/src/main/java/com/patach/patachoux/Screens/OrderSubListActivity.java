@@ -1,5 +1,6 @@
 package com.patach.patachoux.Screens;
 
+import static com.patach.patachoux.Screens.SuplierMainActivity.suplierOrderList;
 import static com.patach.patachoux.Utils.Constant.getAdminId;
 import static com.patach.patachoux.Utils.Constant.getUserId;
 import static com.patach.patachoux.Utils.Constant.getUsername;
@@ -61,7 +62,10 @@ public class OrderSubListActivity extends AppCompatActivity {
     }
     public void getProductsData(){
         totalPrice=0;
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(getAdminId(this)).child(getUserId(this)).child("Order").child(getIntent().getStringExtra("orderId")).child("OrderItems");
+        databaseReference =  FirebaseDatabase.getInstance().getReference().child("SubAdmin")
+                .child(getAdminId(this)).child("Order")
+                .child(getIntent().getStringExtra("orderId")).child("OrderItems");
+
         loadingDialog.show();
         orderList.clear();
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
