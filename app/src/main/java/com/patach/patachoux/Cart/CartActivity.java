@@ -217,34 +217,7 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
-    public void saveOrderRecordUSerSide(String id){
-//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User")
-//                .child(getAdminId(this))
-//                .child(getUserId(this)).child("Order")
-//                .child(id.substring(0,8));
-//        databaseReference.child("OrderId").setValue(id.substring(0,8));
-//        databaseReference.child("Date").setValue(getCurrentDate());
-//
-//
-//        databaseReference.child("DeliveryOrderDate").setValue(setDate.getText().toString());
-//        databaseReference.child("DeliveryOrderTime").setValue(setTime.getText().toString());
-//
-//        databaseReference.child("UserId").setValue(getUserId(this));
-//        for(int i=0;i<cartArrayList.size();i++){
-//            databaseReference = FirebaseDatabase.getInstance().getReference().child("User")
-//                    .child(getAdminId(this))
-//                    .child(getUserId(this)).child("Order")
-//                    .child(id.substring(0,8)).child("OrderItems").child(cartArrayList.get(i).getProdcutId());
-//            databaseReference.child("ProductName").setValue(cartArrayList.get(i).getProductName());
-//            databaseReference.child("ProductPrice").setValue(cartArrayList.get(i).getProductPrice());
-//            databaseReference.child("ProductImage").setValue(cartArrayList.get(i).getProductImage());
-//            databaseReference.child("ProductQuantity").setValue(cartArrayList.get(i).getProductQuantity());
-//            databaseReference.child("ProductId").setValue(cartArrayList.get(i).getProdcutId());
-//        }
-//        saveOrderRecord(id);
 
-
-    }
     public void saveOrderRecord(String id){
         DatabaseReference databaseReference1  = FirebaseDatabase.getInstance().getReference().child("SubAdmin")
                 .child(getAdminId(this)).child("Order").child(id.substring(0,8));

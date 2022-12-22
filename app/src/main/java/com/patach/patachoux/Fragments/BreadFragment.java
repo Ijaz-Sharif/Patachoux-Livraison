@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -58,13 +59,15 @@ public class BreadFragment extends Fragment {
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         recyclerView=view.findViewById(R.id.recylerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        getCartData();
         return view;
     }
     @Override
     public void onStart() {
-      getCartData();
+
         super.onStart();
     }
+
 
     public void getCartData(){
         loadingDialog.show();

@@ -57,11 +57,12 @@ public class PasteryFragment extends Fragment {
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         recyclerView=view.findViewById(R.id.recylerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        getCartData();
         return view;
     }
     @Override
     public void onStart() {
-      getCartData();
+   //   getCartData();
         super.onStart();
     }
     public void getCartData(){
