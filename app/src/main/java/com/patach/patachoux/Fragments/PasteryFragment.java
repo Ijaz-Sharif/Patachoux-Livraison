@@ -45,11 +45,14 @@ public class PasteryFragment extends Fragment {
     ArrayAdapter arrayAdapter;
     private Dialog loadingDialog;
     ArrayList<String> cartProducts = new ArrayList<String>();
+    String adminId="",userId="";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pastery, container, false);
+        adminId=getAdminId(getContext());
+        userId=getUserId(getContext());
         loadingDialog=new Dialog(getContext());
         loadingDialog.setContentView(R.layout.loading_progress_dialog);
         loadingDialog.setCancelable(false);
@@ -68,7 +71,7 @@ public class PasteryFragment extends Fragment {
     public void getCartData(){
         loadingDialog.show();
         cartProducts.clear();
-        DatabaseReference databaseReference =FirebaseDatabase.getInstance().getReference().child("User").child(getAdminId(getContext())).child(getUserId(getContext())).child("Cart");
+        DatabaseReference databaseReference =FirebaseDatabase.getInstance().getReference().child("User").child(adminId).child(userId).child("Cart");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -90,7 +93,7 @@ public class PasteryFragment extends Fragment {
         productArrayList.clear();
 
 
-        dRef=  FirebaseDatabase.getInstance().getReference("User").child(getAdminId(getContext())).child(getUserId(getContext())).child("Products").child("Pastry");
+        dRef=  FirebaseDatabase.getInstance().getReference("User").child(adminId).child(userId).child("Products").child("Pastry");
         dRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

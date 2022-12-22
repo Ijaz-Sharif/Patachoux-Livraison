@@ -35,6 +35,7 @@ public class PastryProductDetailActivity extends AppCompatActivity {
     private Dialog loadingDialog;
     String product="";
     Button btn_cart;
+    String adminId="",userId="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,9 @@ public class PastryProductDetailActivity extends AppCompatActivity {
         image=findViewById(R.id.image);
         product_quantity=findViewById(R.id.product_quantity);
         btn_cart=findViewById(R.id.btn_cart1);
+
+        adminId=getAdminId(this);
+        userId=getUserId(this);
 
         /////loading dialog
         loadingDialog=new Dialog(this);
@@ -70,7 +74,7 @@ public class PastryProductDetailActivity extends AppCompatActivity {
 
     public void getProduct(){
         loadingDialog.show();
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(getAdminId(PastryProductDetailActivity.this)).child(getUserId(PastryProductDetailActivity.this)).child("Cart");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(adminId).child(userId).child("Cart");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -106,8 +110,8 @@ public class PastryProductDetailActivity extends AppCompatActivity {
 
     public void addDataToCart() {
         DatabaseReference  databaseReference= FirebaseDatabase.getInstance().getReference().child("User")
-                .child(getAdminId(PastryProductDetailActivity.this))
-                .child(getUserId(PastryProductDetailActivity.this)).child("Cart")
+                .child(adminId)
+                .child(userId).child("Cart")
                 .child(getIntent().getStringExtra("productId"));
         databaseReference.child("productId").setValue(getIntent().getStringExtra("productId"));
         databaseReference.child("ProductPrice").setValue(getIntent().getStringExtra("price"));

@@ -72,6 +72,7 @@ public class CartActivity extends AppCompatActivity {
     final Calendar myCalendar= Calendar.getInstance();
     DatePickerDialog datePicker;
     DatabaseReference myDataBaseReferance;
+    String adminId="",userId="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +82,8 @@ public class CartActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setDate=findViewById(R.id.setDate);
         setTime=findViewById(R.id.setTime);
+        adminId=getAdminId(this);
+        userId=getUserId(this);
         myDataBaseReferance = FirebaseDatabase.getInstance().getReference().child("User").child(getAdminId(CartActivity.this)).child(getUserId(CartActivity.this)).child("Cart");
         DatePickerDialog.OnDateSetListener date =new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -156,7 +159,7 @@ public class CartActivity extends AppCompatActivity {
 
     public void getProductsData(){
         totalPrice=0;
-        dRef=  FirebaseDatabase.getInstance().getReference().child("User").child(getAdminId(CartActivity.this)).child(getUserId(CartActivity.this)).child("Cart");
+        dRef=  FirebaseDatabase.getInstance().getReference().child("User").child(adminId).child(userId).child("Cart");
         loadingDialog.show();
         cartArrayList.clear();
         dRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -220,24 +223,21 @@ public class CartActivity extends AppCompatActivity {
 
     public void saveOrderRecord(String id){
         DatabaseReference databaseReference1  = FirebaseDatabase.getInstance().getReference().child("SubAdmin")
-                .child(getAdminId(this)).child("Order").child(id.substring(0,8));
+                .child(adminId).child("Order").child(id.substring(0,8));
         databaseReference1.child("Name").setValue(getUsername(CartActivity.this));
         databaseReference1.child("OrderId").setValue(id.substring(0,8));
         databaseReference1.child("Date").setValue(getCurrentDate());
         databaseReference1.child("Status").setValue("Start");
-
-
-
         databaseReference1.child("DeliveryOrderDate").setValue(setDate.getText().toString());
         databaseReference1.child("DeliveryOrderTime").setValue(setTime.getText().toString());
 
-        databaseReference1.child("UserId").setValue(getUserId(this));
+        databaseReference1.child("UserId").setValue(userId);
         databaseReference1.child("UserAddress").setValue(getUserAddress(CartActivity.this));
         databaseReference1.child("UserNumber").setValue(getUserNumber(CartActivity.this));
         databaseReference1.child("SuplierName").setValue("none");
         for(int i=0;i<cartArrayList.size();i++){
             databaseReference1 = FirebaseDatabase.getInstance().getReference().child("SubAdmin")
-                    .child(getAdminId(this)).child("Order").child(id.substring(0,8)).child("OrderItems").child(cartArrayList.get(i).getProductName());
+                    .child(adminId).child("Order").child(id.substring(0,8)).child("OrderItems").child(cartArrayList.get(i).getProductName());
             databaseReference1.child("ProductName").setValue(cartArrayList.get(i).getProductName());
             databaseReference1.child("ProductPrice").setValue(cartArrayList.get(i).getProductPrice());
             databaseReference1.child("ProductImage").setValue(cartArrayList.get(i).getProductImage());
@@ -353,8 +353,8 @@ public class CartActivity extends AppCompatActivity {
                         dialog.dismiss();
 
                         FirebaseDatabase.getInstance().getReference().child("User").
-                                child(getAdminId(CartActivity.this)).
-                                child(getUserId(CartActivity.this)).child("Cart")
+                                child(adminId).
+                                child(userId).child("Cart")
                                 .child(prodcutid).removeValue();
                         getProductsData();
                     }

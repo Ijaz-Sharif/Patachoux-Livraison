@@ -46,11 +46,15 @@ public class BreadFragment extends Fragment {
     ArrayAdapter arrayAdapter;
     private Dialog loadingDialog;
     ArrayList<String> cartProducts = new ArrayList<String>();
+    String adminId="",userId="";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_bread, container, false);
+
+        adminId=getAdminId(getContext());
+        userId=getUserId(getContext());
         /////loading dialog
         loadingDialog=new Dialog(getContext());
         loadingDialog.setContentView(R.layout.loading_progress_dialog);
@@ -72,7 +76,7 @@ public class BreadFragment extends Fragment {
     public void getCartData(){
         loadingDialog.show();
         cartProducts.clear();
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(getAdminId(getContext())).child(getUserId(getContext())).child("Cart");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(adminId).child(userId).child("Cart");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -91,7 +95,7 @@ public class BreadFragment extends Fragment {
     }
     public void getProductsData(){
         productArrayList.clear();
-        dRef=  FirebaseDatabase.getInstance().getReference("User").child(getAdminId(getContext())).child(getUserId(getContext())).child("Products").child("Bread");
+        dRef=  FirebaseDatabase.getInstance().getReference("User").child(adminId).child(userId).child("Products").child("Bread");
         dRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
