@@ -75,7 +75,7 @@ public class PastryProductDetailActivity extends AppCompatActivity {
     public void getProduct(){
         loadingDialog.show();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(adminId).child(userId).child("Cart");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){

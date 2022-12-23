@@ -188,7 +188,7 @@ String url ="https://fcm.googleapis.com/fcm/send";
 
     public void getDeviceToken(Context c,String userId ,CallListner callListner){
         DatabaseReference myRef1=   FirebaseDatabase.getInstance().getReference("User").child(getAdminId(c)).child(userId);
-        myRef1.addValueEventListener(new ValueEventListener() {
+        myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(!dataSnapshot.child("DeviceToken").getValue(String.class).equals("empty")){
@@ -214,7 +214,7 @@ String url ="https://fcm.googleapis.com/fcm/send";
 
     public void getAdminDeviceToken(Context c){
         DatabaseReference myRef1=  FirebaseDatabase.getInstance().getReference().child("SubAdmin").child(getAdminId(c));
-        myRef1.addValueEventListener(new ValueEventListener() {
+        myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(!dataSnapshot.child("DeviceToken").getValue(String.class).equals("empty")){
@@ -239,7 +239,7 @@ String url ="https://fcm.googleapis.com/fcm/send";
 public void getSuplierDeviceToken(Context c){
 
     DatabaseReference myRef=  FirebaseDatabase.getInstance().getReference().child("Suplier").child(getAdminId(c));
-    myRef.addValueEventListener(new ValueEventListener() {
+    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
         @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
