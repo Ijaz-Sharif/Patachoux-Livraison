@@ -160,6 +160,9 @@ public class SuplierSubOrderActivity extends AppCompatActivity {
         });
     }
 
+
+
+
     public void updateOrderStatus(View view) {
 
         databaseReference =FirebaseDatabase.getInstance().getReference().child("SubAdmin")
@@ -205,10 +208,47 @@ public class SuplierSubOrderActivity extends AppCompatActivity {
 
         }
         else {
-            databaseReference.child("Status").setValue("InProgress");
-            databaseReference.child("SuplierName").setValue(getUsername(SuplierSubOrderActivity.this));
-            loadingDialog.dismiss();
-            finish();
+
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    // get the admin email and password from the firebase
+                    String SuplierName = dataSnapshot.child("SuplierName").getValue().toString();
+
+                    if(!SuplierName.equals(getUsername(SuplierSubOrderActivity.this))&&!SuplierName.equals("none")){
+                        btn_order_status.setVisibility(View.GONE);
+                        Toast.makeText(SuplierSubOrderActivity.this,"order is accepted by another delivery boy ",Toast.LENGTH_LONG).show();
+                        loadingDialog.dismiss();
+                        finish();
+                    }
+                    else {
+                        databaseReference.child("Status").setValue("InProgress");
+                        databaseReference.child("SuplierName").setValue(getUsername(SuplierSubOrderActivity.this));
+                        loadingDialog.dismiss();
+                        Toast.makeText(SuplierSubOrderActivity.this,"order started ",Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                    // validate the email and password
+
+
+
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+
+
+
+
+//            databaseReference.child("Status").setValue("InProgress");
+//            databaseReference.child("SuplierName").setValue(getUsername(SuplierSubOrderActivity.this));
+//            loadingDialog.dismiss();
+//            finish();
         }
     }
 

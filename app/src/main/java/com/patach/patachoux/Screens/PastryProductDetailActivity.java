@@ -75,7 +75,7 @@ public class PastryProductDetailActivity extends AppCompatActivity {
     public void getProduct(){
         loadingDialog.show();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(adminId).child(userId).child("Cart");
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
@@ -123,9 +123,10 @@ public class PastryProductDetailActivity extends AppCompatActivity {
             databaseReference.child("ProductQuantity").setValue(product_quantity.getText().toString());
         }
         databaseReference.child("ProductName").setValue(product_name.getText().toString().trim());
-        Toast.makeText(PastryProductDetailActivity.this,"product added in cart list",Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(PastryProductDetailActivity.this, MainActivity.class)
-                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+      //  Toast.makeText(PastryProductDetailActivity.this,"product added in cart list",Toast.LENGTH_SHORT).show();
+       // finish();
+         startActivity(new Intent(PastryProductDetailActivity.this, MainActivity.class)
+         .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
     }
     public void decreaseValue(View view) {
         if(quantity!=0){

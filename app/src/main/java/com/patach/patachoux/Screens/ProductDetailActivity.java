@@ -143,7 +143,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             databaseReference.child("ProductQuantity").setValue(product_quantity.getText().toString());
         }
         databaseReference.child("ProductName").setValue(product_name.getText().toString().trim());
-        Toast.makeText(ProductDetailActivity.this,"product added in cart list",Toast.LENGTH_SHORT).show();
+       // Toast.makeText(ProductDetailActivity.this,"product added in cart list",Toast.LENGTH_SHORT).show();
         startActivity(new Intent(ProductDetailActivity.this, MainActivity.class)
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
     }

@@ -207,10 +207,9 @@ public class CartActivity extends AppCompatActivity {
             String id =createOrderId();
             Toast.makeText(CartActivity.this, "sucessfull", Toast.LENGTH_SHORT).show();
             saveOrderRecord(id);
-           // saveOrderRecordUSerSide(id);
            loadingDialog.dismiss();
 
-              //   finish();
+            //     finish();
             startActivity(new Intent(CartActivity.this, SlipActivity.class));
 
         } catch (Exception e) {
