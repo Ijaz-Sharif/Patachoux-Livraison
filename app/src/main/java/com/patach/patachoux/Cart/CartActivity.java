@@ -231,6 +231,7 @@ public class CartActivity extends AppCompatActivity {
         databaseReference1.child("DeliveryOrderTime").setValue(setTime.getText().toString());
 
         databaseReference1.child("UserId").setValue(userId);
+        databaseReference1.child("TotalPayment").setValue(totalPrice+"");
         databaseReference1.child("UserAddress").setValue(getUserAddress(CartActivity.this));
         databaseReference1.child("UserNumber").setValue(getUserNumber(CartActivity.this));
         databaseReference1.child("SuplierName").setValue("none");
