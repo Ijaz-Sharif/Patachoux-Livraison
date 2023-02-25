@@ -91,7 +91,7 @@ public class CartActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH,month);
                 myCalendar.set(Calendar.DAY_OF_MONTH,day);
-                String myFormat="MM/dd/yyyy";
+                String myFormat="dd/M/yyyy";
                 SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
                 setDate.setText(dateFormat.format(myCalendar.getTime()));
             }
